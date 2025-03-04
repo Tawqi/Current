@@ -3,14 +3,6 @@
 *::after {
     box-sizing: border-box;
 }
-@font-face {
-    font-family: 'MyCustomFont';
-    src: url('verdana-font-family/verdana-bold-italic.ttf') format('ttf'),
-         url('verdana-font-family/verdana-bold.ttf') format('ttf'),
-         url('verdana-font-family/verdana.ttf') format('ttf');
-    font-weight: normal;
-    font-style: normal;
-}
 *{
     margin: 0;
     padding: 0;

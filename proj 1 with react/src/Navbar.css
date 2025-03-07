@@ -1,0 +1,44 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: "MyCustomFont",  "popins", "Roboto", sans-serif;
+    font-weight: bold;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    border-bottom:1px solid black ;
+}
+.nav-2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+}
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 3rem;
+}
+nav ul li {
+    display: flex;
+    font-weight: lighter;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.nav-btn {
+    display: flex;
+    gap: 1rem;
+}

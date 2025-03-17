@@ -31,14 +31,20 @@ nav ul {
     display: flex;
     gap: 3rem;
 }
-nav ul li {
-    display: flex;
+nav ul li a{
     font-weight: lighter;
-    justify-content: center;
-    align-items: center;
     text-align: center;
+}
+nav ul li:hover {
+    text-decoration: underline;
 }
 .nav-btn {
     display: flex;
     gap: 1rem;
+    font-size: 1.4rem;
+    
+}
+.nav-btn span:hover {
+    transition: transform 0.2s ease, color 0.2s ease;
+    transform: scale(1.1); /* Slightly enlarges text */
 }

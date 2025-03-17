@@ -1,12 +1,11 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import bp1 from './assets/img/blue-panjabi1.jpg'
-import bp2 from './assets/img/blue-panjabi2.jpg'
-import bp3 from './assets/img/blue-panjabi3.jpg'
-import bp4 from './assets/img/blue-panjabi4.jpg'
+import bp1 from "./assets/img/blue-panjabi1.jpg";
+import bp2 from "./assets/img/blue-panjabi2.jpg";
+import bp3 from "./assets/img/blue-panjabi3.jpg";
+import bp4 from "./assets/img/blue-panjabi4.jpg";
 
 function ProductPage() {
-
   const [formData, setFormData] = useState({
     size: "",
     name: "",
@@ -19,15 +18,13 @@ function ProductPage() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  
-
   // Handle form submission
   const handleOrderSubmit = async () => {
     try {
-      const response = await fetch("http://localhost:5000/orders", {
+      const response = await fetch("https://postman-echo.com/post", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData), 
+        body: JSON.stringify(formData),
       });
 
       if (response.ok) {
@@ -49,29 +46,62 @@ function ProductPage() {
           <img className="w-90 shadow" src={bp3}></img>
           <img className="w-90 shadow" src={bp4}></img>
         </div>
-        
+
         <div className="details flex flex-col gap-5 text-center">
           <h1 className="text-4xl">Blue Premium Panjabi</h1>
           <p>Product Code :09133</p>
           <p>Preice: 3000Taka</p>
-        <form className="flex flex-col gap-3 p-4" onSubmit={handleOrderSubmit}>
-          <select name="size" className="text-white bg-black p-2 shadow cursor-pointer" onChange={handleChange}>
-            <option value="">Select Size</option>
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-          </select>
-          <input name="name" className="border p-1" type="text" placeholder="Name" onChange={handleChange} />
-          <input name="address" className="border p-1" type="text" placeholder="Address" onChange={handleChange} />
-          <input name="phone" className="border p-1" type="number" placeholder="Phone Number" onChange={handleChange} />
-          <input name="email" className="border p-1" type="email" placeholder="Mail" onChange={handleChange} />
-          <button type="submit" className="text-center border p-2 shadow cursor-pointer bg-blue-500 text-white">
-          Order now
-          </button>
-
-        </form>
-            <div className="mt-10">
+          <form
+            className="flex flex-col gap-3 p-4"
+            onSubmit={handleOrderSubmit}
+          >
+            <select
+              name="size"
+              className="text-white bg-black p-2 shadow cursor-pointer"
+              onChange={handleChange}
+            >
+              <option value="">Select Size</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+            <input
+              name="name"
+              className="border p-1"
+              type="text"
+              placeholder="Name"
+              onChange={handleChange}
+            />
+            <input
+              name="address"
+              className="border p-1"
+              type="text"
+              placeholder="Address"
+              onChange={handleChange}
+            />
+            <input
+              name="phone"
+              className="border p-1"
+              type="number"
+              placeholder="Phone Number"
+              onChange={handleChange}
+            />
+            <input
+              name="email"
+              className="border p-1"
+              type="email"
+              placeholder="Mail"
+              onChange={handleChange}
+            />
+            <button
+              type="submit"
+              className="text-center border p-2 shadow cursor-pointer bg-blue-500 text-white"
+            >
+              Order now
+            </button>
+          </form>
+          <div className="mt-10">
             <h1 className="text-left text-xl font-semibold">Details</h1>
             <ul className="text-left list-disc">
               <li>Striking black design with vivid red embroidery accents</li>
@@ -80,8 +110,8 @@ function ProductPage() {
               <li>Ultra-fine cotton for year-round comfort</li>
               <li>Relaxed fit for effortless wear</li>
             </ul>
-            </div>
-            <div className="mt-10">
+          </div>
+          <div className="mt-10">
             <h1 className="text-left text-xl font-semibold">Care</h1>
             <ul className="text-left list-disc">
               <li>Do not bleach</li>
@@ -90,11 +120,11 @@ function ProductPage() {
               <li>Do not iron over any embroidered areas</li>
               <li>Iron inside out with low to medium heat</li>
             </ul>
-            </div>
+          </div>
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default ProductPage
+export default ProductPage;

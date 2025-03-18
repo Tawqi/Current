@@ -1,12 +1,17 @@
 import { useState } from 'react'
-import NavBar from './NavBar'
-import ProductPage from './ProductPage'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from './components/NavBar'
+import ProductPage from "./pages/ProductPage"
 import Dashboard from './Dashboard'
 function App() {
 
   return (
     <>
-      <ProductPage />
+      <BrowserRouter>
+      <Routes>
+        <Route path="/product" element={<ProductPage />} />
+      </Routes>
+    </BrowserRouter>
     </>
   )
 }

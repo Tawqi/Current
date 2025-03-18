@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-import bp1 from "./assets/img/blue-panjabi1.jpg";
-import bp2 from "./assets/img/blue-panjabi2.jpg";
-import bp3 from "./assets/img/blue-panjabi3.jpg";
-import bp4 from "./assets/img/blue-panjabi4.jpg";
+import bp1 from "../assets/img/blue-panjabi1.jpg";
+import bp2 from "../assets/img/blue-panjabi2.jpg";
+import bp3 from "../assets/img/blue-panjabi3.jpg";
+import bp4 from "../assets/img/blue-panjabi4.jpg";
 
 function ProductPage() {
   const [formData, setFormData] = useState({

@@ -4,6 +4,7 @@ import bp1 from "../assets/img/blue-panjabi1.jpg";
 import bp2 from "../assets/img/blue-panjabi2.jpg";
 import bp3 from "../assets/img/blue-panjabi3.jpg";
 import bp4 from "../assets/img/blue-panjabi4.jpg";
+import NavBar from "../components/NavBar";
 
 function ProductPage() {
   const [formData, setFormData] = useState({
@@ -43,6 +44,7 @@ function ProductPage() {
 
   return (
     <>
+    <NavBar />
       <div className="flex flex-row gap-5 m-5">
         {/* Product Images */}
         <div className="imgs flex flex-wrap gap-2 w-[60vw]">

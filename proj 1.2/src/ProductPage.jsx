@@ -18,10 +18,13 @@ function ProductPage() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
   // Handle form submission
-  const handleOrderSubmit = async () => {
+  const handleOrderSubmit = async (e) => {
+    e.preventDefault(); // Prevent page refresh
+
     try {
-      const response = await fetch("https://postman-echo.com/post", {
+      const response = await fetch("http://localhost:5000/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -29,6 +32,7 @@ function ProductPage() {
 
       if (response.ok) {
         alert("Order placed successfully!");
+        setFormData({ size: "", name: "", address: "", phone: "", email: "" }); // Reset form
       } else {
         alert("Failed to place order.");
       }
@@ -39,26 +43,29 @@ function ProductPage() {
 
   return (
     <>
-      <div className="flex flex-row gap-5  m-5">
+      <div className="flex flex-row gap-5 m-5">
+        {/* Product Images */}
         <div className="imgs flex flex-wrap gap-2 w-[60vw]">
-          <img className="w-90 shadow" src={bp1}></img>
-          <img className="w-90 shadow" src={bp2}></img>
-          <img className="w-90 shadow" src={bp3}></img>
-          <img className="w-90 shadow" src={bp4}></img>
+          <img className="w-90 shadow" src={bp1} alt="Blue Panjabi - Front"></img>
+          <img className="w-90 shadow" src={bp2} alt="Blue Panjabi - Side"></img>
+          <img className="w-90 shadow" src={bp3} alt="Blue Panjabi - Back"></img>
+          <img className="w-90 shadow" src={bp4} alt="Blue Panjabi - Close-up"></img>
         </div>
 
+        {/* Product Details & Order Form */}
         <div className="details flex flex-col gap-5 text-center">
           <h1 className="text-4xl">Blue Premium Panjabi</h1>
-          <p>Product Code :09133</p>
-          <p>Preice: 3000Taka</p>
-          <form
-            className="flex flex-col gap-3 p-4"
-            onSubmit={handleOrderSubmit}
-          >
+          <p>Product Code: 09133</p>
+          <p>Price: 3000 Taka</p>
+
+          {/* Order Form */}
+          <form className="flex flex-col gap-3 p-4" onSubmit={handleOrderSubmit}>
             <select
               name="size"
               className="text-white bg-black p-2 shadow cursor-pointer"
+              value={formData.size}
               onChange={handleChange}
+              required
             >
               <option value="">Select Size</option>
               <option value="S">S</option>
@@ -71,28 +78,36 @@ function ProductPage() {
               className="border p-1"
               type="text"
               placeholder="Name"
+              value={formData.name}
               onChange={handleChange}
+              required
             />
             <input
               name="address"
               className="border p-1"
               type="text"
               placeholder="Address"
+              value={formData.address}
               onChange={handleChange}
+              required
             />
             <input
               name="phone"
               className="border p-1"
               type="number"
               placeholder="Phone Number"
+              value={formData.phone}
               onChange={handleChange}
+              required
             />
             <input
               name="email"
               className="border p-1"
               type="email"
-              placeholder="Mail"
+              placeholder="Email"
+              value={formData.email}
               onChange={handleChange}
+              required
             />
             <button
               type="submit"
@@ -101,6 +116,8 @@ function ProductPage() {
               Order now
             </button>
           </form>
+
+          {/* Product Details */}
           <div className="mt-10">
             <h1 className="text-left text-xl font-semibold">Details</h1>
             <ul className="text-left list-disc">
@@ -111,6 +128,8 @@ function ProductPage() {
               <li>Relaxed fit for effortless wear</li>
             </ul>
           </div>
+
+          {/* Care Instructions */}
           <div className="mt-10">
             <h1 className="text-left text-xl font-semibold">Care</h1>
             <ul className="text-left list-disc">

@@ -24,6 +24,12 @@ function ProductPage() {
   const handleOrderSubmit = async (e) => {
     e.preventDefault(); // Prevent page refresh
 
+    // Validate phone number length
+    if (formData.phone.length < 11) {
+      alert("Phone number must be at least 11 digits!");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:5000/orders", {
         method: "POST",
@@ -44,14 +50,14 @@ function ProductPage() {
 
   return (
     <>
-    <NavBar />
+      <NavBar />
       <div className="flex flex-row gap-5 m-5">
         {/* Product Images */}
         <div className="imgs flex flex-wrap gap-2 w-[60vw]">
-          <img className="w-90 shadow" src={bp1} alt="Blue Panjabi - Front"></img>
-          <img className="w-90 shadow" src={bp2} alt="Blue Panjabi - Side"></img>
-          <img className="w-90 shadow" src={bp3} alt="Blue Panjabi - Back"></img>
-          <img className="w-90 shadow" src={bp4} alt="Blue Panjabi - Close-up"></img>
+          <img className="w-90 shadow" src={bp1} alt="Blue Panjabi - Front" />
+          <img className="w-90 shadow" src={bp2} alt="Blue Panjabi - Side" />
+          <img className="w-90 shadow" src={bp3} alt="Blue Panjabi - Back" />
+          <img className="w-90 shadow" src={bp4} alt="Blue Panjabi - Close-up" />
         </div>
 
         {/* Product Details & Order Form */}
@@ -79,10 +85,25 @@ function ProductPage() {
               name="name"
               className="border p-1"
               type="text"
-              placeholder="Name"
+              placeholder="Full name"
               value={formData.name}
-              onChange={handleChange}
+              onChange={(e) => {
+                let inputValue = e.target.value;
+              
+                // Remove special characters except spaces
+                inputValue = inputValue.replace(/[^a-zA-Z\s]/g, "");
+              
+                // Ensure each word starts with a capital letter
+                inputValue = inputValue
+                  .split(" ")
+                  .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+                  .join(" ");
+              
+                setFormData({ ...formData, name: inputValue });
+              }}
               required
+              pattern="^[A-Z][a-z]{2,}( [A-Z][a-z]{2,})+$"
+              title="Enter at full name."
             />
             <input
               name="address"
@@ -92,24 +113,31 @@ function ProductPage() {
               value={formData.address}
               onChange={handleChange}
               required
+              title="Please enter your full name"
             />
             <input
               name="phone"
               className="border p-1"
-              type="number"
+              type="tel"
               placeholder="Phone Number"
               value={formData.phone}
-              onChange={handleChange}
+              onChange={(e) => {
+                // Allow only numbers
+                const numericValue = e.target.value.replace(/\D/, "");
+                setFormData({ ...formData, phone: numericValue });
+              }}
               required
+              minLength="11"
+              pattern="\d{11,}"
+              title="Enter a phone number with at least 11 digits"
             />
             <input
               name="email"
               className="border p-1"
               type="email"
-              placeholder="Email"
+              placeholder="Email (Optional)"
               value={formData.email}
-              onChange={handleChange}
-              required
+              onChange={handleChange} 
             />
             <button
               type="submit"

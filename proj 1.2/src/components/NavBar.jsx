@@ -10,13 +10,13 @@ function NavBar() {
       <div className="flex flex-row justify-between gap-8">
         <ul className="flex flex-row justify-between gap-5 text-xl">
           <li><Link to="/home">Home</Link></li>
-          <li><Link to="/categories">Categories</Link></li>
+          <li><Link to="/findstore">Store Location</Link></li>
           <li><Link to="/about">About</Link></li>
         </ul>
-        <div className="flex flex-row justify-between gap-5 items-center text-xl">
+        {/* <div className="flex flex-row justify-between gap-5 items-center text-xl">
           <span className="fas fa-magnifying-glass "></span>
           <span className="fas fa-cart-shopping "></span>
-        </div>
+        </div> */}
       </div>
       </nav>
 
